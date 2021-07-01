@@ -110,6 +110,27 @@ namespace ATBM_PH2
             cmd.Connection.Close();
         }
 
-       
+        public string maDonThuoc = "";
+        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int index = e.RowIndex;
+            DataGridViewRow selectedRow = dataGridView2.Rows[index];
+            maDonThuoc = selectedRow.Cells[0].Value.ToString();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            String query = String.Format("select * from truong.ct_don_thuoc where ma_don_thuoc = '{0}'".ToUpper(), maDonThuoc);
+
+            OracleCommand cmd = new OracleCommand(query, Login.con);
+
+            cmd.Connection.Open();
+
+            var dt = new DataTable();
+            dt.Load(cmd.ExecuteReader());
+            dataGridView2.DataSource = dt;
+
+            cmd.Connection.Close();
+        }
     }
 }
