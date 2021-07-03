@@ -10,6 +10,7 @@ namespace ATBM_PH2
 {
     static class Program
     {
+        public static String log_id;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
